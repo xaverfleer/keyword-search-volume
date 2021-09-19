@@ -10,5 +10,6 @@
   },
   "manifest_version": 3,
   "name": "keyword-search-volume",
+  "permissions": ["storage"],
   "version": "0.0.1"
 }
