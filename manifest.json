@@ -2,5 +2,8 @@
     "name": "keyword-search-volume",
     "description": "Find the search volume for your keywords",
     "version": "0.1",
-    "manifest_version": 3
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    }
 }
