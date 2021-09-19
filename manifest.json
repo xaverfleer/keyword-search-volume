@@ -6,5 +6,9 @@
   "background": {
     "service_worker": "background.js"
   },
-  "action": { "default_popup": "popup.html" }
+  "action": { "default_popup": "popup.html" },
+  "icons": {
+    "16": "/images/favicon-io/favicon-16x16.png",
+    "32": "/images/favicon-io/favicon-32x32.png"
+  }
 }
