@@ -1,14 +1,14 @@
 {
-  "name": "keyword-search-volume",
-  "description": "Find the search volume for your keywords",
-  "version": "0.0.1",
-  "manifest_version": 3,
+  "action": { "default_popup": "popup.html" },
   "background": {
     "service_worker": "background.js"
   },
-  "action": { "default_popup": "popup.html" },
+  "description": "Find the search volume for your keywords",
   "icons": {
     "16": "/images/favicon-io/favicon-16x16.png",
     "32": "/images/favicon-io/favicon-32x32.png"
-  }
+  },
+  "manifest_version": 3,
+  "name": "keyword-search-volume",
+  "version": "0.0.1"
 }
