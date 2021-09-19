@@ -4,3 +4,4 @@ This favicon was generated using the following font:
 - Font Author: Copyright 2020 The Kiwi Maru Project Authors (https://github.com/Kiwi-KawagotoKajiru/Kiwi-Maru)
 - Font Source: http://fonts.gstatic.com/s/kiwimaru/v7/R70YjykGkuuDep-hRg6YmACQXzLhTg.ttf
 - Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
+- colors: rgb(136,0,0), rgb(245, 240, 249)
