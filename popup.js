@@ -65,8 +65,8 @@ function initGui() {
 
 function updateTable() {
   chrome.storage.sync.get(["keywords-arr", "keywords-obj"], function (items) {
-    let keywordsArr = items["keywords-arr"];
-    let keywordsObj = items["keywords-obj"];
+    let keywordsArr = items["keywords-arr"] || [];
+    let keywordsObj = items["keywords-obj"] || {};
 
     for (let kw of keywordsArr) {
       let tr = document.createElement("tr");
