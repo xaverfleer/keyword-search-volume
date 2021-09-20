@@ -20,7 +20,7 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
       initElems();
       elems.button.addEventListener("click", handleUploadClick);
 
-      updateTable();
+      initGui();
     } else {
       setTimeout(init);
     }
@@ -53,6 +53,13 @@ function handleStorageUpdates(changes) {
   if (didKeywordsChange) {
     updateTable();
   }
+}
+
+function initGui() {
+  updateTable();
+  chrome.storage.sync.get([storageKeys.kwdsInput], (items) => {
+    elems.input.value = items[storageKeys.kwdsInput];
+  });
 }
 
 function updateTable() {
