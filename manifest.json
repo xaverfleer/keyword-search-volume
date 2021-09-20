@@ -9,6 +9,12 @@
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*.google.com/*"],
+      "js": ["content-script.js"]
+    }
+  ],
   "description": "Find the search volume for your keywords",
   "icons": {
     "16": "/images/favicon-io/favicon-16x16.png",
