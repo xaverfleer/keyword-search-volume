@@ -2,6 +2,8 @@
 console.log("hello popup");
 
 const elems = {};
+let keywordsArr = [],
+  keywordsObj = {};
 
 chrome.storage.onChanged.addListener(handleStorageUpdates);
 
@@ -16,6 +18,12 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
       elems.updateKwdsButton.addEventListener("click", handleUploadClick);
       elems.startAnalysis.addEventListener("click", handleStartAnalisisClick);
 
+      chrome.storage.sync.get(["keywords-arr", "keywords-obj"], (items) => {
+        keywordsArr = items["keywords-arr"];
+        keywordsObj = items["keywords-obj"];
+        updateDownloadLink();
+      });
+
       initGui();
     } else {
       setTimeout(init);
@@ -27,6 +35,7 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
     elems.updateKwdsButton = document.querySelector("#update-keywords");
     elems.resultsTableBody = document.querySelector(".results-table__tbody");
     elems.startAnalysis = document.querySelector("#start-analysis");
+    elems.downloadLink = document.querySelector("a");
   }
 }
 
@@ -35,12 +44,11 @@ function handleUploadClick(event) {
   chrome.storage.sync.set({ "keywords-input": keywords });
 
   {
-    const keywordArrRaw = keywords.split(",");
-    const keywordArr = keywordArrRaw.map((k) => k.trim());
-    const keywordObj = {};
+    const arrRaw = keywords.split(",");
+    const arrSanitized = arrRaw.map((k) => k.trim()).filter((k) => k);
 
-    chrome.storage.sync.set({ ["keywords-arr"]: keywordArr });
-    chrome.storage.sync.set({ ["keywords-obj"]: keywordObj });
+    chrome.storage.sync.set({ ["keywords-arr"]: arrSanitized });
+    chrome.storage.sync.set({ ["keywords-obj"]: keywordsObj });
   }
 }
 
@@ -53,7 +61,16 @@ function handleStorageUpdates(changes) {
     updateTable();
   }
 
-  if (changes["keywords-arr"]) chrome.storage.sync.set({ analyze: false });
+  if (changes["keywords-arr"]) {
+    chrome.storage.sync.set({ analyze: false });
+    keywordsArr = changes["keywords-arr"].newValue;
+  }
+
+  if (changes["keywords-obj"]) {
+    chrome.storage.sync.set({ analyze: false });
+    keywordsObj = changes["keywords-obj"].newValue;
+    updateDownloadLink();
+  }
 }
 
 function initGui() {
@@ -61,6 +78,7 @@ function initGui() {
   chrome.storage.sync.get("keywords-input", (items) => {
     elems.input.value = items["keywords-input"];
   });
+  updateDownloadLink();
 }
 
 function updateTable() {
@@ -85,4 +103,21 @@ function updateTable() {
   });
 
   elems.resultsTableBody.innerHTML = "";
+}
+
+function updateDownloadLink() {
+  const arr = [["keyword", "keyword-search-volume"]];
+  for (let kw of keywordsArr) {
+    arr.push([kw, keywordsObj[kw]]);
+  }
+
+  var elem = elems.downloadLink;
+
+  elem.download = "keyword-search-volume.csv";
+  var csv = arr
+    .map(function (v) {
+      return v.join(",");
+    })
+    .join("\n");
+  elem.href = encodeURI("data:text/csv," + csv);
 }
