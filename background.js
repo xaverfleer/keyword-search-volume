@@ -14,6 +14,7 @@ function handleStorageUpdates(changes) {
   if (changes["keywords-arr"]) keywordsArr = changes["keywords-arr"].newValue;
 
   if (changes["keywords-obj"]) keywordsObj = changes["keywords-obj"].newValue;
+
   if (keywordsObj[currentKw]) {
     currentKw = "";
     analyze();
