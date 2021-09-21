@@ -1,7 +1,7 @@
 console.log("Hello background");
 
 chrome.storage.sync.set({ analyze: false });
-let analyzing, keywordsArr, keywordsObj, currentKw;
+let analyzing, keywordsAr, keywordsObj, currentKw;
 
 init();
 
@@ -23,8 +23,8 @@ function handleStorageUpdates(changes) {
 
 function init() {
   chrome.storage.sync.get(["keywords-arr", "keywords-obj"], (items) => {
-    keywordsArr = items["keywords-arr"];
-    keywordsObj = items["keywords-obj"];
+    keywordsObj = items["keywords-obj"] || {};
+    keywordsArr = items["keywords-arr"] || [];
   });
   chrome.storage.onChanged.addListener(handleStorageUpdates);
 }

@@ -12,7 +12,7 @@ if (searchTerm) {
     : 0;
 
   chrome.storage.sync.get(["keywords-obj"], (items) => {
-    const kwObj = items["keywords-obj"];
+    const kwObj = items["keywords-obj"] || {};
     kwObj[searchTerm] = resultsNum;
     chrome.storage.sync.set({ "keywords-obj": kwObj });
   });
