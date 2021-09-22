@@ -93,7 +93,7 @@ function updateTable() {
       tdKey.innerText = kw;
       tr.appendChild(tdKey);
 
-      let searchResults = keywordsObj[kw] || keywordsObj[kw] === 0 ? 0 : "?";
+      let searchResults = keywordsObj[kw] || (keywordsObj[kw] === 0 ? 0 : "?");
       let tdRsult = document.createElement("td");
       tdRsult.innerText = searchResults;
       tr.appendChild(tdRsult);
