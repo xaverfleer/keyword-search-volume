@@ -76,7 +76,7 @@ function handleStorageUpdates(changes) {
 function initGui() {
   updateTable();
   chrome.storage.sync.get("keywords-input", (items) => {
-    elems.input.value = items["keywords-input"];
+    elems.input.value = items["keywords-input"] || "";
   });
   updateDownloadLink();
 }
