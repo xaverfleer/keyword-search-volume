@@ -10,9 +10,7 @@ const searchTerm = elems.input.value.split(/^allintitle:/)[1];
 if (searchTerm) {
   var resultsNum = elems.results
     ? +elems.results.innerText.match(/[0-9’]+/)[0].replace(/’/g, "")
-    : elems.heading?.elems.heading.innerText.includes(
-        "did not match any documents"
-      )
+    : elems.heading?.innerText.includes("did not match any documents")
     ? 0
     : undefined;
 
