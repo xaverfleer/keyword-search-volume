@@ -19,8 +19,8 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
       elems.startAnalysis.addEventListener("click", handleStartAnalisisClick);
 
       chrome.storage.sync.get(["keywords-arr", "keywords-obj"], (items) => {
-        keywordsArr = items["keywords-arr"];
-        keywordsObj = items["keywords-obj"];
+        keywordsArr = items["keywords-arr"] || [];
+        keywordsObj = items["keywords-obj"] || {};
         updateDownloadLink();
       });
 
