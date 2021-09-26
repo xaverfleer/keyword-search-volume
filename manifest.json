@@ -15,7 +15,7 @@
       "js": ["content-script.js"]
     }
   ],
-  "description": "Find the search volume for your keywords",
+  "description": "Find the allintitle search results for your keywords.",
   "icons": {
     "16": "/images/favicon-io/favicon-16x16.png",
     "32": "/images/favicon-io/favicon-32x32.png"
