@@ -18,5 +18,9 @@ if (searchTerm) {
     const kwObj = items["keywords-obj"] || {};
     kwObj[searchTerm] = resultsNum;
     chrome.storage.sync.set({ "keywords-obj": kwObj });
+
+    try {
+      window.close();
+    } catch {}
   });
 }

@@ -62,12 +62,10 @@ function handleStorageUpdates(changes) {
   }
 
   if (changes["keywords-arr"]) {
-    chrome.storage.sync.set({ analyze: false });
     keywordsArr = changes["keywords-arr"].newValue;
   }
 
   if (changes["keywords-obj"]) {
-    chrome.storage.sync.set({ analyze: false });
     keywordsObj = changes["keywords-obj"].newValue;
     updateDownloadLink();
   }

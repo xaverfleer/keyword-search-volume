@@ -38,7 +38,8 @@ function analyze() {
       break;
     }
   }
-  chrome.storage.sync.set({ analyze: false });
+
+  if (!found) chrome.storage.sync.set({ analyze: false });
 }
 
 function analyzeKw(kw) {
