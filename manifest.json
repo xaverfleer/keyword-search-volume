@@ -21,7 +21,7 @@
     "32": "/images/favicon-io/favicon-32x32.png"
   },
   "manifest_version": 3,
-  "name": "keyword-search-volume",
+  "name": "Keyword allintitle Results",
   "permissions": ["storage"],
   "version": "0.0.3"
 }
