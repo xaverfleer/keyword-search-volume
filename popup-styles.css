@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Piazolla";
+  src: url("/assets/fonts/Piazzolla-SemiBold.woff2") format("woff2");
+}
 html {
   min-width: 30em;
   background-color: rgb(245, 240, 249);
