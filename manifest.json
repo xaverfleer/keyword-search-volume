@@ -2,8 +2,8 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "/images/favicon-io/favicon-16x16.png",
-      "32": "/images/favicon-io/favicon-32x32.png"
+      "16": "/assets/images/favicon-io/favicon-16x16.png",
+      "32": "/assets/images/favicon-io/favicon-32x32.png"
     }
   },
   "background": {
@@ -17,8 +17,8 @@
   ],
   "description": "Find the allintitle search results for your keywords.",
   "icons": {
-    "16": "/images/favicon-io/favicon-16x16.png",
-    "32": "/images/favicon-io/favicon-32x32.png"
+    "16": "/assets/images/favicon-io/favicon-16x16.png",
+    "32": "/assets/images/favicon-io/favicon-32x32.png"
   },
   "manifest_version": 3,
   "name": "Keyword allintitle Results",
