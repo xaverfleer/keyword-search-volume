@@ -23,5 +23,5 @@
   "manifest_version": 3,
   "name": "Keyword Allintitle Results",
   "permissions": ["storage"],
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
