@@ -63,6 +63,7 @@ function handleStorageUpdates(changes) {
 
   if (changes["keywords-arr"]) {
     keywordsArr = changes["keywords-arr"].newValue;
+    updateDownloadLink();
   }
 
   if (changes["keywords-obj"]) {
