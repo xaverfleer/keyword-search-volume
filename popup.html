@@ -2,24 +2,64 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/popup-styles.css" />
+    <link rel="stylesheet" href="./popup-styles.css" />
   </head>
   <body>
-    <label for="keywords"
-      >Keywords (comma separated) <textarea id="keywords"></textarea>
-    </label>
-    <button id="update-keywords">Update keywords</button>
-    <button id="start-analysis">Start analysis</button>
+    <div class="step step--add-keywords">
+      <span class="step__numbering">1.</span>
+      <div class="step__content">
+        <label for="keywords">Keywords (comma separated) </label>
+        <textarea
+          id="keywords"
+          placeholder="keyword 1, another keyword, third keyword"
+          rows="5"
+          cols="40"
+        ></textarea>
+      </div>
+      <button
+        alt="Set or update keywords"
+        class="step__buttons"
+        id="update-keywords"
+      >
+        <img src="./assets/images/done.svg" />
+      </button>
+    </div>
+    <div class="step step--start-analysis">
+      <span class="step__numbering">2.</span>
+      <div class="step__content">
+        Start analysis
+        <button
+          alt="Start analysis"
+          class="step__content-button"
+          id="start-analysis"
+        >
+          <img src="./assets/images/start.svg" />
+        </button>
+      </div>
+    </div>
+    <div class="step step--results">
+      <span class="step__numbering">3.</span>
+      <div class="step__content">
+        Download CSV
+        <button class="step__content-button">
+          <a id="download-button"><img src="./assets/images/download.svg" /></a>
+        </button>
+      </div>
+    </div>
+    <div class="step step--info">
+      <span class="step__numbering">i:</span>
+      <div class="step__content">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Keyword</th>
+              <th>allintitle matches</th>
+            </tr>
+          </thead>
+          <tbody class="results-table__tbody"></tbody>
+        </table>
+      </div>
+    </div>
     <script src="popup.js"></script>
-    <table class="results-table">
-      <thead>
-        <tr>
-          <th>Keyword</th>
-          <th>allintitle matches</th>
-        </tr>
-      </thead>
-      <tbody class="results-table__tbody"></tbody>
-    </table>
-    <a id="download-button">Save as CSV</a>
   </body>
 </html>

@@ -1,8 +1,38 @@
 @font-face {
   font-family: "Piazolla";
-  src: url("/assets/fonts/Piazzolla-SemiBold.woff2") format("woff2");
+  src: url("./assets/fonts/Piazzolla-SemiBold.woff2") format("woff2");
 }
+
 html {
   min-width: 30em;
   background-color: rgb(245, 240, 249);
+  font-family: "Piazolla";
+}
+
+.step {
+  display: flex;
+  align-items: flex-end;
+}
+
+.step__buttons {
+  margin: 0 0 1.45em 1em;
+}
+
+.step__content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.step__content-button {
+  height: 3.1em;
+  width: 3.1em;
+}
+
+.step__numbering {
+  font-size: 4rem;
+  font-weight: 800;
+  font-family: "Piazolla";
+  flex-basis: 1em;
 }
