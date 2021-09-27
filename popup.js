@@ -36,6 +36,7 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
     elems.resultsTableBody = document.querySelector(".results-table__tbody");
     elems.startAnalysis = document.querySelector("#start-analysis");
     elems.downloadLink = document.querySelector("a");
+    elems.downloadHint = document.querySelector("#download-hint");
   }
 }
 
@@ -107,17 +108,30 @@ function updateTable() {
 
 function updateDownloadLink() {
   const arr = [["keyword", "keyword-search-volume"]];
+
+  let complete = true;
+
   for (let kw of keywordsArr) {
-    arr.push([kw, keywordsObj[kw]]);
+    const kwResults = keywordsObj[kw];
+    if (kwResults) {
+      arr.push([kw, keywordsObj[kw]]);
+    } else {
+      complete = false;
+    }
   }
 
-  var elem = elems.downloadLink;
+  const linkElem = elems.downloadLink;
+  const hintElem = elems.downloadHint;
 
-  elem.download = "keyword-search-volume.csv";
-  var csv = arr
+  hintElem.innerText = complete
+    ? ""
+    : ": Analysis is incomplete, go to step 2 for complete results.";
+
+  linkElem.download = "keyword-search-volume.csv";
+  const csv = arr
     .map(function (v) {
       return v.join(",");
     })
     .join("\n");
-  elem.href = encodeURI("data:text/csv," + csv);
+  linkElem.href = encodeURI("data:text/csv," + csv);
 }
