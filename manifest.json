@@ -21,7 +21,7 @@
     "32": "/assets/images/favicon-io/favicon-32x32.png"
   },
   "manifest_version": 3,
-  "name": "Keyword allintitle Results",
+  "name": "Keyword Allintitle Results",
   "permissions": ["storage"],
-  "version": "0.0.4"
+  "version": "0.0.5"
 }
