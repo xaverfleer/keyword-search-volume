@@ -53,6 +53,7 @@ function handleUploadClick(event) {
 }
 
 function handleStartAnalisisClick() {
+  chrome.storage.sync.set({ analyze: false });
   chrome.storage.sync.set({ analyze: true });
 }
 
