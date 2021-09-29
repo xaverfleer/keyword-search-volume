@@ -14,10 +14,6 @@ html {
   align-items: flex-end;
 }
 
-.step__buttons {
-  margin: 0 0 1.45em 1em;
-}
-
 .step__content {
   display: flex;
   flex-direction: column;

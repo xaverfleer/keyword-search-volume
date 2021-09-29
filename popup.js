@@ -15,7 +15,6 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
 
     if (isLoaded) {
       initElems();
-      elems.updateKwdsButton.addEventListener("click", handleUploadClick);
       elems.startAnalysis.addEventListener("click", handleStartAnalisisClick);
 
       chrome.storage.sync.get(["keywords-arr", "keywords-obj"], (items) => {
@@ -32,7 +31,6 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
 
   function initElems() {
     elems.input = document.querySelector("#keywords");
-    elems.updateKwdsButton = document.querySelector("#update-keywords");
     elems.resultsTableBody = document.querySelector(".results-table__tbody");
     elems.startAnalysis = document.querySelector("#start-analysis");
     elems.downloadLink = document.querySelector("a");
@@ -40,7 +38,7 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
   }
 }
 
-function handleUploadClick(event) {
+function handleStartAnalisisClick() {
   const keywords = elems.input.value;
   chrome.storage.sync.set({ "keywords-input": keywords });
 
@@ -51,18 +49,12 @@ function handleUploadClick(event) {
     chrome.storage.sync.set({ ["keywords-arr"]: arrSanitized });
     chrome.storage.sync.set({ ["keywords-obj"]: keywordsObj });
   }
-}
 
-function handleStartAnalisisClick() {
   chrome.storage.sync.set({ analyze: false });
   chrome.storage.sync.set({ analyze: true });
 }
 
 function handleStorageUpdates(changes) {
-  if (changes["keywords-input"]) {
-    updateTable();
-  }
-
   if (changes["keywords-arr"]) {
     keywordsArr = changes["keywords-arr"].newValue;
     updateDownloadLink();
@@ -72,6 +64,8 @@ function handleStorageUpdates(changes) {
     keywordsObj = changes["keywords-obj"].newValue;
     updateDownloadLink();
   }
+
+  updateTable();
 }
 
 function initGui() {
