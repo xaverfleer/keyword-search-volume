@@ -144,7 +144,7 @@ function updateDownload() {
 
   hintElem.innerText = complete
     ? ""
-    : ": Analysis is incomplete, go to step 2 for complete results. Also: check background tabs for a recapcha.";
+    : "Analysis is incomplete, go to step 2 for complete results. Also: check background tabs for a recapcha.";
 
   if (complete) {
     elems.downloadButton.removeAttribute("disabled");
