@@ -16,6 +16,7 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
     if (isLoaded) {
       initElems();
       elems.startAnalysis.addEventListener("click", handleStartAnalisisClick);
+      elems.input.addEventListener("input", handleInputChange);
 
       chrome.storage.sync.get(["keywords-arr", "keywords-obj"], (items) => {
         keywordsArr = items["keywords-arr"] || [];
@@ -35,6 +36,23 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
     elems.startAnalysis = document.querySelector("#start-analysis");
     elems.downloadLink = document.querySelector("a");
     elems.downloadHint = document.querySelector("#download-hint");
+  }
+}
+
+function handleInputChange() {
+  updateAnalysisButton();
+}
+
+function updateAnalysisButton() {
+  if (elems.input.value?.length) {
+    elems.startAnalysis.removeAttribute("disabled");
+    elems.startAnalysis.removeAttribute("title");
+  } else {
+    elems.startAnalysis.setAttribute("disabled", "");
+    elems.startAnalysis.setAttribute(
+      "title",
+      "Go to step 1: Enter keywords for analysis."
+    );
   }
 }
 
@@ -81,6 +99,7 @@ function updateTable() {
     let keywordsArr = items["keywords-arr"] || [];
     let keywordsObj = items["keywords-obj"] || {};
 
+    elems.resultsTableBody.innerHTML = "";
     for (let kw of keywordsArr) {
       let tr = document.createElement("tr");
 
@@ -98,8 +117,6 @@ function updateTable() {
       elems.resultsTableBody.appendChild(tr);
     }
   });
-
-  elems.resultsTableBody.innerHTML = "";
 }
 
 function updateDownloadLink() {

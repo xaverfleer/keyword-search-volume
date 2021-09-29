@@ -24,27 +24,18 @@
         <button
           alt="Start analysis"
           class="step__content-button"
+          disabled
           id="start-analysis"
+          title="Go to step 1: Enter keywords for analysis."
         >
           <img src="./assets/images/start.svg" />
-        </button>
-      </div>
-    </div>
-    <div class="step step--results">
-      <span class="step__numbering">3.</span>
-      <div class="step__content">
-        <div>
-          Download CSV
-          <span id="download-hint"></span>
-        </div>
-        <button class="step__content-button" disabled>
-          <a id="download-button"><img src="./assets/images/download.svg" /></a>
         </button>
       </div>
     </div>
     <div class="step step--info">
       <span class="step__numbering">i:</span>
       <div class="step__content">
+        See your keyword results
         <table class="results-table">
           <thead>
             <tr>
@@ -54,6 +45,24 @@
           </thead>
           <tbody class="results-table__tbody"></tbody>
         </table>
+      </div>
+    </div>
+    <div class="step step--results">
+      <span class="step__numbering">3.</span>
+      <div class="step__content">
+        <div>
+          Download CSV
+          <span id="download-hint"></span>
+        </div>
+        <button
+          class="step__content-button"
+          disabled
+          title="Go to step 2: Analyze keywords."
+        >
+          <a class="download-link" id="download-button"
+            ><img src="./assets/images/download.svg"
+          /></a>
+        </button>
       </div>
     </div>
     <script src="popup.js"></script>
