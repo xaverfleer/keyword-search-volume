@@ -45,6 +45,7 @@ function analyze() {
 function analyzeKw(kw) {
   currentKw = kw;
   chrome.tabs.create({
+    active: false,
     url: `https://www.google.com/search?q=allintitle:${kw}`,
   });
 }
