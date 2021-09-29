@@ -11,6 +11,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
+h2 {
+  font-family: "Piazolla";
+}
+
 html {
   min-width: 30em;
   background-color: rgb(245, 240, 249);
@@ -23,7 +27,6 @@ html {
 
 .step {
   display: flex;
-  align-items: flex-end;
 }
 
 .step__content {
@@ -43,4 +46,5 @@ html {
   font-weight: 800;
   font-family: "Piazolla";
   flex-basis: 1em;
+  line-height: 1;
 }
