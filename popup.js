@@ -17,11 +17,12 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
       initElems();
       elems.startAnalysis.addEventListener("click", handleStartAnalisisClick);
       elems.input.addEventListener("input", handleInputChange);
+      updateDownload();
 
       chrome.storage.sync.get(["keywords-arr", "keywords-obj"], (items) => {
         keywordsArr = items["keywords-arr"] || [];
         keywordsObj = items["keywords-obj"] || {};
-        updateDownloadLink();
+        updateDownload();
       });
 
       initGui();
@@ -34,6 +35,9 @@ chrome.storage.onChanged.addListener(handleStorageUpdates);
     elems.input = document.querySelector("#keywords");
     elems.resultsTableBody = document.querySelector(".results-table__tbody");
     elems.startAnalysis = document.querySelector("#start-analysis");
+    elems.downloadButton = document.querySelector(
+      ".step__content-button--download"
+    );
     elems.downloadLink = document.querySelector("a");
     elems.downloadHint = document.querySelector("#download-hint");
   }
@@ -75,12 +79,12 @@ function handleStartAnalisisClick() {
 function handleStorageUpdates(changes) {
   if (changes["keywords-arr"]) {
     keywordsArr = changes["keywords-arr"].newValue;
-    updateDownloadLink();
+    updateDownload();
   }
 
   if (changes["keywords-obj"]) {
     keywordsObj = changes["keywords-obj"].newValue;
-    updateDownloadLink();
+    updateDownload();
   }
 
   updateTable();
@@ -90,8 +94,9 @@ function initGui() {
   updateTable();
   chrome.storage.sync.get("keywords-input", (items) => {
     elems.input.value = items["keywords-input"] || "";
+    updateAnalysisButton();
   });
-  updateDownloadLink();
+  updateDownload();
 }
 
 function updateTable() {
@@ -109,7 +114,7 @@ function updateTable() {
 
       let searchResults =
         keywordsObj[kw] ||
-        (keywordsObj[kw] === 0 ? 0 : "Not searched yet, go to step 2.");
+        (keywordsObj[kw] === 0 ? 0 : "Go to step 2: Start the analysis.");
       let tdRsult = document.createElement("td");
       tdRsult.innerText = searchResults;
       tr.appendChild(tdRsult);
@@ -119,7 +124,7 @@ function updateTable() {
   });
 }
 
-function updateDownloadLink() {
+function updateDownload() {
   const arr = [["keyword", "keyword-search-volume"]];
 
   let complete = true;
@@ -139,13 +144,18 @@ function updateDownloadLink() {
 
   hintElem.innerText = complete
     ? ""
-    : ": Analysis is incomplete, go to step 2 for complete results.";
+    : ": Analysis is incomplete, go to step 2 for complete results. Also: check background tabs for a recapcha.";
 
-  linkElem.download = "keyword-search-volume.csv";
-  const csv = arr
-    .map(function (v) {
-      return v.join(",");
-    })
-    .join("\n");
-  linkElem.href = encodeURI("data:text/csv," + csv);
+  if (complete) {
+    elems.downloadButton.removeAttribute("disabled");
+    linkElem.download = "keyword-search-volume.csv";
+    const csv = arr
+      .map(function (v) {
+        return v.join(",");
+      })
+      .join("\n");
+    linkElem.href = encodeURI("data:text/csv," + csv);
+  } else {
+    elems.downloadButton.setAttribute("disabled", "");
+  }
 }
