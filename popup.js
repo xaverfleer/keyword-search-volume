@@ -88,7 +88,9 @@ function updateTable() {
       tdKey.innerText = kw;
       tr.appendChild(tdKey);
 
-      let searchResults = keywordsObj[kw] || (keywordsObj[kw] === 0 ? 0 : "?");
+      let searchResults =
+        keywordsObj[kw] ||
+        (keywordsObj[kw] === 0 ? 0 : "Not searched yet, go to step 2.");
       let tdRsult = document.createElement("td");
       tdRsult.innerText = searchResults;
       tr.appendChild(tdRsult);
@@ -107,9 +109,10 @@ function updateDownloadLink() {
 
   for (let kw of keywordsArr) {
     const kwResults = keywordsObj[kw];
-    if (kwResults) {
+    if (typeof kwResults === "number") {
       arr.push([kw, keywordsObj[kw]]);
     } else {
+      arr.push([kw, "Not searched yet, go to step 2."]);
       complete = false;
     }
   }
